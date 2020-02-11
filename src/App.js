@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
 
     this.interval = null;
-    this.challenge = 'Lorem ipsum knowit är bäst dolor sit amet';
+    this.challenge = 'The quick brown fox jumps over the lazy dog';
     this.localStorageName = 'typochallenge';
 
     if(!this.getWorldRecord()) {
