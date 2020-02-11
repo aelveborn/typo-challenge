@@ -7,18 +7,27 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.saveName = this.saveName.bind(this);
+
     this.interval = null;
     this.challenge = 'The quick brown fox jumps over the lazy dog';
     this.localStorageName = 'typochallenge';
+    this.localStorageWorldChampion = 'championName';
 
     if(!this.getWorldRecord()) {
       this.saveWorldRecord(60000);
     }
 
+    if(!this.getWorldChampionName()){
+      this.saveWorldChampionName("Micke");
+    }
+
     this.state = {
       time: 0,
       worldRecord: this.getWorldRecord(),
-      newWorldRecord: false
+      newWorldRecord: false,
+      playerName: this.getWorldChampionName()
     }
   }
 
@@ -66,6 +75,15 @@ class App extends Component {
     return !wr ? null : wr;
   }
 
+  saveWorldChampionName(name){
+    localStorage.setItem(this.localStorageWorldChampion, name);
+  }
+
+  getWorldChampionName(){
+    let wc = localStorage.getItem(this.localStorageWorldChampion);
+    return wc ? wc : null;
+  }
+
   formatTime(time) {
     let multiplier = 60;
 
@@ -90,9 +108,31 @@ class App extends Component {
     }
   }
 
+  saveName(){
+    this.saveWorldChampionName(this.state.playerName);
+    window.location.reload();
+  }
+
+  cancel(){
+    window.location.reload();
+  }
+
+  handleNameChange(e){
+    this.setState({playerName: e.target.value});
+  }
+
   render() {
     return (
       <div className="app">
+      {this.state.newWorldRecord ? (
+          <div id="popup">
+            <div id="enter-name">
+                <input name="name" type="text" onChange={this.handleNameChange}/>
+                <input type="button" value="Save" onClick={this.saveName}/>
+                <input type="button" value="Cancel" onClick={this.cancel}/>
+            </div>
+          </div>
+        ):null}
         <div className="logo">
           <img src={logo} alt="knowit" />
         </div>
@@ -107,7 +147,7 @@ class App extends Component {
           </div>
           
           <div className="display__world-record">
-            World record: {this.formatTime(this.state.worldRecord)}
+            World record: {this.state.playerName} {this.formatTime(this.state.worldRecord)}
           </div>
         </div>
         
