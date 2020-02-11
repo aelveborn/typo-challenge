@@ -49,14 +49,11 @@
   padding: 10px 0;
   text-transform: uppercase;
   margin-bottom: 40px;
-  font-weight: bold;
 }
 
 .challenge__sentence {
   font-size: 30px;
   margin: 0 0 10px;
-  font-weight: 800;
-  font-weight: 100;
 }
 
 .input input {
