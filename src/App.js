@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import logo from './2_experience_white.png';
+import logo from './2_experience_black.png';
 
 class App extends Component {
 
@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   formatTime(time) {
-    let multiplier = 100;
+    let multiplier = 60;
 
     let minutes = Math.floor(time / (60 * multiplier));
     let seconds = Math.floor((time - (minutes * 60 * multiplier)) / 60);
