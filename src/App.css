@@ -37,6 +37,7 @@
 
 .display__world-record {
   font-size: 40px;
+  margin-bottom: 50px;
 }
 
 .challenge {
@@ -76,6 +77,61 @@
 
 .input input::placeholder {
   color: #C9E2E0;
+}
+
+div#popup {
+  background: #e6e1dd;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+#enter-name{
+  width: 605px;
+}
+#popup label {
+  width: 100%;
+  font-family: VT323,monospace;
+  font-size: 50px;
+  padding-bottom: 30px;
+  display: inline-block;
+}
+#popup input[type="text"]{
+  width: 100%;
+  font-size: 30px;
+  font-weight: 800;
+  padding: 25px 30px;
+  margin-top: 0;
+  color: #000;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  border-radius: 50px;
+  font-weight: 100;
+  font-family: arial;
+  box-sizing: border-box;
+}
+#popup input[type="button"] {
+  -webkit-appearance: none;
+  border: none;
+  margin: 30px;
+  padding: 20px 60px;
+  font-size: 40px;
+  font-family: VT323,monospace;
+  background: #fac0b2;
+  cursor: pointer;
+  border: 3px solid #e6e1dd;
+}
+#popup input[type="button"]:not(:last-of-type) {
+  background: #b7dfbd;
+}
+#popup input[type="button"]:hover {
+  border: 3px solid #f500fe;
 }
 
 @keyframes blinker {  

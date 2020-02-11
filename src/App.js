@@ -133,7 +133,8 @@ class App extends Component {
       {this.state.newWorldRecord ? (
           <div id="popup">
             <div id="enter-name">
-                <input name="name" type="text" onChange={this.handleNameChange}/>
+                <label>Ange ditt namn:</label>
+                <input name="name" type="text" spellCheck="false" autoComplete="off" onChange={this.handleNameChange}/>
                 <input type="button" value="Save" onClick={this.saveName}/>
                 <input type="button" value="Cancel" onClick={this.cancel}/>
             </div>
