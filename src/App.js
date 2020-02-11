@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
 import './App.css';
-import logo from './2_experience_white.png';
+import logo from './2_experience_black.png';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
 
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.saveName = this.saveName.bind(this);
+    this.cancel = this.cancel.bind(this);
+
     this.interval = null;
-    this.challenge = 'Lorem ipsum knowit är bäst dolor sit amet';
+    this.challenge = 'The quick brown fox jumps over the lazy dog';
     this.localStorageName = 'typochallenge';
+    this.localStorageWorldChampion = 'championName';
 
     if(!this.getWorldRecord()) {
       this.saveWorldRecord(60000);
     }
 
+    if(!this.getWorldChampionName()){
+      this.saveWorldChampionName("Knowit");
+    }
+
     this.state = {
       time: 0,
       worldRecord: this.getWorldRecord(),
-      newWorldRecord: false
+      newWorldRecord: false,
+      playerName: this.getWorldChampionName()
     }
   }
 
@@ -66,8 +76,17 @@ class App extends Component {
     return !wr ? null : wr;
   }
 
+  saveWorldChampionName(name){
+    localStorage.setItem(this.localStorageWorldChampion, name);
+  }
+
+  getWorldChampionName(){
+    let wc = localStorage.getItem(this.localStorageWorldChampion);
+    return wc ? wc : null;
+  }
+
   formatTime(time) {
-    let multiplier = 100;
+    let multiplier = 60;
 
     let minutes = Math.floor(time / (60 * multiplier));
     let seconds = Math.floor((time - (minutes * 60 * multiplier)) / 60);
@@ -84,15 +103,43 @@ class App extends Component {
     if(!this.interval) {
       this.start();
     }
-    
+    if(event.target.value === 'clearcacheplz'){
+      localStorage.clear();
+      console.log('Cleared localstorage');
+      window.location.reload();
+    }
     if(event.target.value === this.challenge) {
       this.stop();
     }
   }
 
+  saveName(){
+    this.saveWorldChampionName(this.state.playerName);
+    window.location.reload();
+  }
+
+  cancel(){
+    this.saveWorldChampionName('Unknown player');
+    window.location.reload();
+  }
+
+  handleNameChange(e){
+    this.setState({playerName: e.target.value});
+  }
+
   render() {
     return (
       <div className="app">
+      {this.state.newWorldRecord ? (
+          <div id="popup">
+            <div id="enter-name">
+                <label>Ange ditt namn:</label>
+                <input name="name" type="text" spellCheck="false" autoComplete="off" onChange={this.handleNameChange}/>
+                <input type="button" value="Save" onClick={this.saveName}/>
+                <input type="button" value="Cancel" onClick={this.cancel}/>
+            </div>
+          </div>
+        ):null}
         <div className="logo">
           <img src={logo} alt="knowit" />
         </div>
@@ -107,7 +154,7 @@ class App extends Component {
           </div>
           
           <div className="display__world-record">
-            World record: {this.formatTime(this.state.worldRecord)}
+            World record: {this.state.playerName} {this.formatTime(this.state.worldRecord)}
           </div>
         </div>
         

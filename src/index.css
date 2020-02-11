@@ -1,9 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  color: #fff;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 400;
-  /* background-color: #A0D1CA; */
-  background-color: #009681;
+  color: #333333;
+  font-family: arial;
+  font-weight: 100;
+  background-color: #fac0b2;
 }
