@@ -9,6 +9,8 @@
   right: 0;
   -webkit-animation: blinker 1s linear infinite;
   animation: blinker 1s linear infinite;
+  position: absolute;
+  width: 100%;
 }
 
 .logo {
