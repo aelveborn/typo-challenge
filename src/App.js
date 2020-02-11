@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     if(!this.getWorldChampionName()){
-      this.saveWorldChampionName("Micke");
+      this.saveWorldChampionName("Knowit");
     }
 
     this.state = {
