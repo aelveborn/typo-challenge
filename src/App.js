@@ -9,6 +9,7 @@ class App extends Component {
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.saveName = this.saveName.bind(this);
+    this.cancel = this.cancel.bind(this);
 
     this.interval = null;
     this.challenge = 'The quick brown fox jumps over the lazy dog';
@@ -102,7 +103,11 @@ class App extends Component {
     if(!this.interval) {
       this.start();
     }
-    
+    if(event.target.value === 'clearcacheplz'){
+      localStorage.clear();
+      console.log('Cleared localstorage');
+      window.location.reload();
+    }
     if(event.target.value === this.challenge) {
       this.stop();
     }
@@ -114,6 +119,7 @@ class App extends Component {
   }
 
   cancel(){
+    this.saveWorldChampionName('Unknown player');
     window.location.reload();
   }
 
