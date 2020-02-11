@@ -25,7 +25,7 @@
 }
 
 .display {
-  margin: 100px 0 0;
+  margin: 100px 0;
   font-weight: 100;
   font-family: 'VT323', monospace;
 }
@@ -46,7 +46,6 @@
 
 .challenge__description {
   font-size: 33px;
-  font-weight: 800;
   padding: 10px 0;
   text-transform: uppercase;
   margin-bottom: 40px;
@@ -63,7 +62,6 @@
 .input input {
   width: 605px;
   font-size: 30px;
-  font-weight: 800;
   padding: 25px 30px;
   margin-top: 0;
   color: #000;
